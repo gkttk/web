@@ -60,4 +60,9 @@ static {
     public static Map<String, User> getUsers() {
         return  UsersMap.getInstance();
     }
+
+    public static boolean updateUser(User user){
+        //код updateUser
+        return true;
+    }
 }
