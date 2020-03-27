@@ -1,7 +1,5 @@
 package com.myApp;
 
-import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
 public class UserService {
@@ -9,7 +7,6 @@ public class UserService {
 static {
     UsersMap.getInstance().put("admin", new User("admin","admin"));
 }
-
 
     public static void addUser(User user) {
         UsersMap.getInstance().put(user.getLogin(), user);
@@ -59,5 +56,10 @@ static {
 
     public static Map<String, User> getUsers() {
         return  UsersMap.getInstance();
+    }
+
+    public static boolean deleteUser(User user){
+        //Код удаления ветка 1
+        return true;
     }
 }
