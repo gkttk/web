@@ -1,5 +1,5 @@
-import com.myApp.WageService;
 
+import com.myApp.WageService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,24 +10,23 @@ import java.io.IOException;
 
 @WebServlet(name = "WageServlet", urlPatterns = "/wage")
 public class WageServlet extends HttpServlet {
+
+    private WageService wageService;
+
+    @Override
+    public void init() {
+        wageService = WageService.getInstance();
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
-
-
-      /*  HttpSession session = request.getSession();
-        User userAuth = (User)session.getAttribute("userAuth");*/
-
-       /* if (userAuth == null) {
-            User user = new User(request.getParameter("login"), request.getParameter("password"));
-            session.setAttribute("userAuth", user);
-        }*/
         double wage = Double.parseDouble(request.getParameter("zarplata_f1"));
-        double fszn = WageService.vszn(wage);
-        double belgos = WageService.belgoz(wage);
-        double podohod = WageService.podohodnyi(wage);
-        double prof = WageService.prof(wage);
-        double finalWage = WageService.checkWage(wage);
+        double fszn = wageService.vszn(wage);
+        double belgos = wageService.belgoz(wage);
+        double podohod = wageService.podohodnyi(wage);
+        double prof = wageService.prof(wage);
+        double finalWage = wageService.checkWage(wage);
 
 
         request.setAttribute("fszn", fszn);
@@ -36,9 +35,7 @@ public class WageServlet extends HttpServlet {
         request.setAttribute("prof", prof);
         request.setAttribute("your_wage", finalWage);
 
-
         getServletContext().getRequestDispatcher("/wage.jsp").forward(request, response);
-
     }
 
     @Override

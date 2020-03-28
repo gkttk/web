@@ -1,4 +1,3 @@
-import com.myApp.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,6 @@ public class JSTLServlet extends HttpServlet {
         request.setAttribute("attribute_2", "<h1>Всем пока</h1>");
         request.setAttribute("price", "1000");
         request.getServletContext().getRequestDispatcher("/learnPage.jsp").forward(request,response);
-
     }
 
     @Override

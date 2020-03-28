@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class UserServiceTest {
-
     private static IUserService iUserService;
 
     @BeforeAll
@@ -33,7 +32,7 @@ public class UserServiceTest {
     }
 
     @AfterAll
-    public void deleteTest(){
+    public static void deleteTest(){
         iUserService.getUsers().remove("test");
     }
 }

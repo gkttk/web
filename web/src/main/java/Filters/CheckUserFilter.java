@@ -3,7 +3,6 @@ package Filters;
 import com.myApp.User;
 import com.myApp.UserService;
 import com.myApp.api.IUserService;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -33,31 +32,13 @@ public class CheckUserFilter implements Filter {
             iUserService.addUser(new User(userName, req.getParameter("password")));
                 filterChain.doFilter(req,res);
         }
-
-
     }
 
     @Override
-    public void destroy() {
-    }
+    public void destroy() {}
 
 }
 
-
-       /* if(requestLogin.equalsIgnoreCase(UserServic)){
-            res.sendRedirect(contextPath + "/index.jsp");
-           *//* RequestDispatcher rq = req.getServletContext().getRequestDispatcher(contextPath + "/index.jsp");
-            rq.forward(req,res);*//*
-        }
-
-
-
-  *//*      if(User.login.equals(req.getParameter("login"))){
-            res.sendRedirect(contextPath + "/index.jsp");
-        }*//*
-      else{
-            filterChain.doFilter(servletRequest, servletResponse);
-        }*/
 
 
 

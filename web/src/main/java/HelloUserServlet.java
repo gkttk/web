@@ -1,6 +1,5 @@
 import com.myApp.UserService;
 import com.myApp.api.IUserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +21,6 @@ public class HelloUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         session.setAttribute("user", request.getParameter("login"));

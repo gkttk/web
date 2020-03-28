@@ -2,29 +2,38 @@ package com.myApp;
 
 public class WageService {
 
-    public static double vszn(double num){
-        return num*0.35;
+    private static WageService instance;
+
+    private WageService() {}
+
+    public static WageService getInstance() {
+        if (instance == null) {
+            synchronized (WageService.class) {
+                instance = new WageService();
+            }
+        }
+        return instance;
     }
 
-    public static double belgoz(double num){
-        return num*0.006;
+    public double vszn(double wage) {
+        return wage * 0.35;
     }
 
-    public static double podohodnyi(double num){
-        return num*0.13;
+    public double belgoz(double wage) {
+        return wage * 0.006;
     }
 
-    public static double prof(double num){
-        return num*0.01;
+    public double podohodnyi(double wage) {
+        return wage * 0.13;
     }
 
-    public static double checkWage(double num){
-        double vszn = vszn(num);
-        double belgoz = belgoz(num);
-        double podohodnyi = podohodnyi(num);
-        double prof = prof(num);
-        double sum = vszn + belgoz + podohodnyi + prof;
-        return num-sum;
+    public double prof(double wage) {
+        return wage * 0.01;
+    }
+
+    public double checkWage(double wage) {
+        double taxes = instance.vszn(wage) + instance.belgoz(wage) + instance.podohodnyi(wage) + instance.prof(wage);
+        return wage - taxes;
     }
 
 

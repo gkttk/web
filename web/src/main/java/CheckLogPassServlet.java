@@ -1,6 +1,5 @@
 import com.myApp.UserService;
 import com.myApp.api.IUserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,19 +17,10 @@ public class CheckLogPassServlet extends HttpServlet {
         iUserService = UserService.getInstance();
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-
-      /*  HttpSession session = request.getSession();
-        User userAuth = (User)session.getAttribute("userAuth");*/
-
-       /* if (userAuth == null) {
-            User user = new User(request.getParameter("login"), request.getParameter("password"));
-            session.setAttribute("userAuth", user);
-        }*/
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         if (iUserService.checkUserLogPass(login, password)) {
@@ -41,11 +31,9 @@ public class CheckLogPassServlet extends HttpServlet {
             request.setAttribute("errorLogPass", "Неверно введен логин или пароль");
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         }
-
     }
 
     @Override
-    public void destroy() {
-    }
+    public void destroy() {}
 
 }
