@@ -21,9 +21,6 @@
 
 
 
-
-
-
         <c:if test="${your_wage != null}">
         <table width="700" border="1" bordercolor="blue" align="left">
             <col width="50%">

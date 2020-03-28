@@ -29,7 +29,7 @@ public class CheckLogPassServlet extends HttpServlet {
        String password = request.getParameter("password");
        if(UserService.checkUserLogPass(login,password)){
            request.getSession().setAttribute("user", login);
-           request.getSession().setAttribute("list", UserService.getUsers());
+           request.getSession().setAttribute("list", UserService.getUsers().keySet());
            getServletContext().getRequestDispatcher("/wage.jsp").forward(request,response);
        }
        else{
