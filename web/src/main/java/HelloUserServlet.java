@@ -1,5 +1,5 @@
-import com.myApp.User;
 import com.myApp.UserService;
+import com.myApp.api.IUserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,24 +12,22 @@ import java.io.IOException;
 
 @WebServlet(name = "HelloUserServlet", urlPatterns = "/helloUser")
 public class HelloUserServlet extends HttpServlet {
+
+    private IUserService iUserService;
+
+    @Override
+    public void init() {
+        iUserService = UserService.getInstance();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         response.setContentType("text/html");
-
-      /*  HttpSession session = request.getSession();
-        User userAuth = (User)session.getAttribute("userAuth");*/
-
-       /* if (userAuth == null) {
-            User user = new User(request.getParameter("login"), request.getParameter("password"));
-            session.setAttribute("userAuth", user);
-        }*/
-
-
         HttpSession session = request.getSession();
         session.setAttribute("user", request.getParameter("login"));
-        session.setAttribute("list", UserService.getUsers().keySet());
+        session.setAttribute("list", iUserService.getUsers().keySet());
         getServletContext().getRequestDispatcher("/wage.jsp").forward(request,response);
-
 
     }
 
